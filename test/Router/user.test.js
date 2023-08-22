@@ -15,8 +15,8 @@ describe('Testing User/Session Router',() => {
     
     it('Obtener un usuario por su email', async ()=>{
         let credentialsMock = {
-            email: 'leandroa.fernandez@gmail.com',
-            password: '123456'
+            email: 'diego.sepu@outlook.es',
+            password: '1234'
         }
         const { statusCode, body, headers } = await requester.post('api/session/login').send(credentialsMock);
         
@@ -27,7 +27,7 @@ describe('Testing User/Session Router',() => {
 
     it('Obtener un error enviando usuario invalido', async () => {
         let credentialsMock = {
-            email: 'leandroa@gmail.com',
+            email: 'diego1@gmail.com',
             password: '123456'
         }
         const { statusCode, body } = await requester.post('api/session/login').send(credentialsMock);

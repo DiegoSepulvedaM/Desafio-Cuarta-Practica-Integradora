@@ -15,8 +15,8 @@ describe('Testing Cart Router', () => {
     })
     it('Obtener cookie para autenticacion',async () => {
         let credentialsMock = {
-            email: 'leandroa.fernandez@gmail.com',
-            password: '123456'
+            email: 'diego.sepu@outlook.es',
+            password: '1234'
         }
         const result = await requester.post('api/session/login').send(credentialsMock);
         const cookieResult = result.headers['set-cookie'][0];
