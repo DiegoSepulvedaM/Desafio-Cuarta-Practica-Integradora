@@ -39,7 +39,7 @@ const swaggerOptions = {
     openapi: '3.0.1',
     info:{
       title: 'E commerce',
-      description: 'E-Commerce de productos de indumentaria de Leandro Fernandez'
+      description: 'E-Commerce de productos de indumentaria de Diego Sepulveda'
     }
   },
   apis: [`${__dirname}/docs/*/*.yaml`]

@@ -11,9 +11,9 @@
   },
   {
     "_id": "a0671c30-45b2-40ec-9102-3eca56681aac",
-    "first_name": "Leandro",
-    "last_name": "Fernandez",
-    "email": "leandroa.fernandez@gmail.com",
+    "first_name": "diego",
+    "last_name": "Sepulveda",
+    "email": "diego.sepu@gmail.com",
     "age": "34",
     "password": "$2b$10$6sxRI3kKvK7wLE0FcMLDcuWJE2n2/dF1Cbb7Zl2Zmo81XCw68O5k6",
     "cart": { "_id": "eecfab96-a248-44be-943d-fb1f1aac9da1" },
