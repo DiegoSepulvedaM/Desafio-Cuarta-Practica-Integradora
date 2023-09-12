@@ -7,12 +7,12 @@ Content-Type: application/json
 {
    "status": true,
     "title": "",
-    "description": "Remera Polo",
+    "description": "auriculares",
     "price": "",
     "thumbnails": [],
-    "code": "REMEPOLO3",
-    "stock": "2",
-    "category": "Remeras"
+    "code": "auricu12",
+    "stock": "1",
+    "category": "electro"
 }
 
 ### 
@@ -21,11 +21,11 @@ Content-Type: application/json
 
 {
     "status": true,
-    "title": "Remera Polo",
-    "description": "Remera Polo",
-    "price": "20000",
+    "title": "teclado",
+    "description": "teclado steel",
+    "price": "2111",
     "thumbnails": [],
-    "code": "REMEPOLO3",
-    "stock": "2",
-    "category": "Remeras"
+    "code": "tecla23",
+    "stock": "5",
+    "category": "electro"
 }
