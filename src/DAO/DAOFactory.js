@@ -10,7 +10,6 @@ let MESSAGE_DAO;
 
 switch (persistence) {
     case 'MONGO':
-        console.log('Trabajando con MongoDB');    
         const { default: MongoDbConnection } = await import ('../config/MongoDbConnection.js');
         MongoDbConnection.getConnection();
         let { default: ProductManagerDB } = await import ("./MongoDbManagers/product.dao.js");
@@ -27,7 +26,6 @@ switch (persistence) {
 
         break;
     case 'FILES':
-        console.log('Trabajando con FILES');    
         const { default: CartManagerFiles } = await import ("./FileSystemaManangers/cart.dao.js");
         const { default: ProductManagerFiles } = await import ("./FileSystemaManangers/product.dao.js");
         const { default: TicketManagerFiles } = await import ("./FileSystemaManangers/ticket.dao.js");

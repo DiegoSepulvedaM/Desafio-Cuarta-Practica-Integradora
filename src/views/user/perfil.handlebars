@@ -2,19 +2,20 @@
   {{#if error.status}}
     <p>{{error.message}}</p>
   {{/if}}
-  <article>
-    <h1>Perfil</h1>
-    <div class="user_info">
-      <p>First Name: {{user.first_name}}</p>
-      <p>Last Name: {{user.last_name}}</p>
-      <p>Email: {{user.email}}</p>
-      <p>Age: {{user.age}}</p>
+  <article class="user_info text-center">
+    <h2>Perfil</h3>
+    <div class="card text-start w-100" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title mb-3">Fullname: {{user.first_name}} {{user.last_name}}</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">Email: {{user.email}}</h6>
+        <h6 class="card-subtitle mb-2 text-body-secondary">Age: {{user.age}}</h6>
+        <a
+          href="/logout"
+          class="card-link text-end"
+          id="logout"
+          style="display: block;"
+        >Log Out</a>
+      </div>
     </div>
-    <a
-      href="/logout"
-      class="btn-primary"
-      id="logout"
-      style="display: block;"
-    >Log Out</a>
   </article>
 </section>

@@ -16,7 +16,7 @@ describe('Testing Product Router', () => {
     it('Obtener cookie para autenticacion',async () => {
         let credentialsMock = {
             email: 'diego.sepu@outlook.es',
-            password: '1234'
+            password: '123456'
         }
         const result = await requester.post('api/session/login').send(credentialsMock);
         const cookieResult = result.headers['set-cookie'][0];

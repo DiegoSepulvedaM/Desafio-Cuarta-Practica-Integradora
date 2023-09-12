@@ -1,6 +1,6 @@
 import { USER_REPOSITORY } from "../repository/repositoryManager.js";
 
-export default class SessionServices {
+export default class UserServices {
   getUser = async (email) => await USER_REPOSITORY.getUser(email);
   saveUser = async (user) => await USER_REPOSITORY.register(user);
   changePassword = async ({ email, newpassword }) =>
@@ -12,4 +12,6 @@ export default class SessionServices {
   setLastConnection = async (uid) => await USER_REPOSITORY.setLastConnection(uid)
   uploadDocuments = async (uid, documents) => await USER_REPOSITORY.uploadDocuments(uid, documents)
   getUserById = async (uid) => await USER_REPOSITORY.getUserById(uid)
+  getAll = async () => await USER_REPOSITORY.getAll()
+  deleteInactiveUser = async (uid) => await USER_REPOSITORY.deleteInactiveUser(uid)
 }

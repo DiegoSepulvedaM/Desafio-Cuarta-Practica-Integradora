@@ -11,17 +11,17 @@ createForm.addEventListener("submit", async (e) => {
       type: 'products'
     }
   });
-  let message = await res.json();
-  if (message?.success) {
+  let result = await res.json();
+  if (result.status === 'success') {
     Swal.fire({
-      text: `${message.success}`,
+      text: `${result.payload.message}`,
       toast: true,
       position: "top-right",
     });
     createForm.reset();
   } else {
     Swal.fire({
-      text: `${message.error}`,
+      text: `${result.payload}`,
       toast: true,
       position: "top-right",
     });

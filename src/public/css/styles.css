@@ -6,12 +6,6 @@
     scrollbar-color: rgba(255, 255, 255, .16) transparent;
 }
 
-body {
-    background: #BE93C5;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #7BC6CC, #BE93C5);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #7BC6CC, #BE93C5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
 main {
     display: flex;
     align-items: center;
@@ -21,8 +15,7 @@ main {
     max-height: 100vh;
 }
 
-main h1 {
-    color: #fff;
+main h2 {
     margin-bottom: 1rem;
 }
 
@@ -67,6 +60,11 @@ main #message_logs .other_msg {
     color: #333;
     border-radius: 5px;
     word-wrap: break-word;
+}
+
+main #message_logs .own_msg p,
+main #message_logs .other_msg p {
+    margin-bottom: 0 !important;
 }
 
 main #message_logs .own_msg {

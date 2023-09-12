@@ -21,7 +21,7 @@ class CartRouterClass extends RouterClass {
     this.delete("/:cid/products/:pid", passportCall("jwt"), deleteProductInCart);
     this.put("/:cid/products/:pid", passportCall("jwt"), updateProductInCart);
     this.post("/:cid/purchase", passportCall("jwt"), closeCart);
-  }
+  } 
 }
 
 export default CartRouterClass;

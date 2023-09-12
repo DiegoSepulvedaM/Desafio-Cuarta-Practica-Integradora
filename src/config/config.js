@@ -9,4 +9,6 @@ export default {
   mongoUrl: URL,
   jwtPrivate: process.env.JWT_PRIVATE_KEY,
   persistence: process.env.PERSISTENCE,
+  loggerType: process.env.LOGGER,
+  emailApp: process.env.APP_EMAIL
 };

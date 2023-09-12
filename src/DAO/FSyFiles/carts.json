@@ -1,19 +1,19 @@
 [
   {
-    "_id": "0a57cf4f-7bcd-4c9f-bf75-4746b7d09100",
+    "_id": "03a57cf4f-7bcd-4c9f-bf75-4746b7d0912",
     "products": [
       {
         "product": {
           "_id": "645ad02a32d3d81586ef6960",
-          "title": "Remera Clasica Estampada Hombre",
-          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde vel nulla culpa voluptatem quasi provident qui laborum omnis molestias fuga voluptatibus error cupiditate, et architecto nemo quod rerum dolorum nihil.",
-          "price": 7399,
+          "title": "Auriculares",
+          "description": "Auris",
+          "price": 8000,
           "thumbnails": [
             "3.jpg"
           ],
           "code": "CRH02",
           "stock": 0,
-          "category": "remeras",
+          "category": "teclado",
           "status": true,
           "__v": 0,
           "id": "645ad02a32d3d81586ef6960"

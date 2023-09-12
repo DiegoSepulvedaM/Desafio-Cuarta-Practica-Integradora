@@ -11,4 +11,14 @@ export default class TicketManagerDB {
       return { error: error.message };
     }
   }
+
+  async getTicket(code) {
+    try {
+      let ticket = await ticketModel.findOne({ code }).lean()
+      if (!ticket) throw new Error(`Ticket not exists.`);
+      return ticket
+    } catch (error) {
+      return { error: error.message };
+    }
+  }
 }

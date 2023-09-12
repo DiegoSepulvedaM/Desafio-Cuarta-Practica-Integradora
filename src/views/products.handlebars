@@ -7,52 +7,63 @@
   <section class="products">
     <article>
       <div style="color: #333; text-align: center;">
-        <h2>Bienvenido: {{user.first_name}} {{user.last_name}}</h2>
-        <h3>{{user.email}}</h3>
-        <p>Rol: {{user.role}}</p>
         <p class="cart-id" hidden>{{cart._id}}</p>
       </div>
-      <form action="/products" method="get" class="form_search">
-        <select name="query" id="query" class="form_select">
-          <option value="">Select a Category</option>
-          <option value="remeras">Remeras</option>
-          <option value="calzado">Calzados</option>
-          <option value="pantalones">Pantalones</option>
-          <option value="mochilas">Mochilas</option>
-        </select>
-        <select name="sort" id="sort" class="form_select">
-          <option value="">Sort by price</option>
-          <option value="asc">Ascendente</option>
-          <option value="desc">Descendente</option>
-        </select>
-        <button class="btn-primary" type="submit">Search</button>
+      <form class="row row-cols-lg-auto g-3 align-items-center mb-2" action="/products" method="get" >
+        <div class="col-12">
+          <select class="form-select" name="query" id="query">
+            <option value="">Select a Category</option>
+            <option value="remeras">Remeras</option>
+            <option value="calzado">Calzados</option>
+            <option value="pantalones">Pantalones</option>
+            <option value="mochilas">Mochilas</option>
+          </select>
+        </div>
+
+        <div class="col-12">
+          <select class="form-select"name="sort" id="sort">
+            <option value="">Sort by price</option>
+            <option value="asc">Ascendente</option>
+            <option value="desc">Descendente</option>
+          </select>
+        </div>       
+
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
       </form>
     </article>
     <article class="products_list">
       {{#each products}}
-        <div class="product">
-          <img src="/images/products/{{this.thumbnails.[0]}}" alt="{{this.title}}"/>
-          <h3>Title: {{this.title}}</h3>
-          <p>Price: {{this.price}}</p>
-          <div class="btn-container">
-            <a href="/product/{{this._id}}" class="btn-primary">Detail</a>
-            <button data-id="{{this._id}}" class="btn-primary addtocart">Add to cart</button>
+      <div class="card shadow-lg" style="width: 18rem;">
+        <img src="/images/products/{{this.thumbnails.[0]}}" alt="{{this.title}}" class="card-img-top">
+        <div class="card-body d-flex flex-column justify-content-between">
+          <h5 class="card-title"> {{this.title}}</h5>
+          <p class="card-text">$ {{this.price}}</p>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a class="btn btn-primary me-md-2"  href="/product/{{this._id}}" type="button">Detail</a>
+            <button class="btn btn-primary addtocart" data-id="{{this._id}}" type="button">Add to cart</button>
           </div>
         </div>
+      </div>
       {{/each}}
     </article>
-    <article class="pagination">
-      {{#if pag.prevLink}}
-        <a href="{{pag.prevLink}}" class="btn-primary prev_button">Prev</a>
-      {{else}}
-        <a class="btn-primary prev_button disabled">Prev</a>
-      {{/if}}
-      <span class="actual_page">{{pag.page}}</span>
-      {{#if pag.nextLink}}
-        <a href="{{pag.nextLink}}" class="btn-primary next_button">Next</a>
-      {{else}}
-        <a class="btn-primary next_button disabled">Next</a>
-      {{/if}}
+    <article class="">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          {{#if pag.prevLink}}
+            <li class="page-item"><a class="page-link" href="{{pag.prevLink}}" >Previous</a></li>
+          {{else}}
+           <li class="page-item"><a class="page-link disabled">Previous</a></li>
+           {{/if}}
+          <li class="page-item"><a class="page-link">{{pag.page}}</a></li>
+          {{#if pag.nextLink}}
+            <li class="page-item"><a class="page-link" href="{{pag.nextLink}}" >Next</a></li>
+          {{else}}
+            <li class="page-item"><a class="page-link disabled">Next</a></li>
+           {{/if}}
+        </ul>
+      </nav>
     </article>
   </section>
   {{/if}}

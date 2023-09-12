@@ -1,20 +1,20 @@
 <section class="form-container">
   <article>
-    <h1>Login</h1>
-    <form method="POST"  class="user_form" action="" id="login">
-      <div>
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" autocomplete="off"/>
+    <h2>Login</h2>
+    <form method="POST" class="shadow-lg p-3 my-3 border rounded user_form" style="min-width: 500px;" action="" id="login">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" name="email" id="email" class="form-control"aria-describedby="emailHelp">
       </div>
-      <div>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" autocomplete="new-password"/>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" name="password" id="password" autocomplete="new-password" class="form-control">
       </div>
-      <button class="btn-primary">Sign in</button>
-      {{!-- <a href="api/session/github" class="btn-primary" style="display:block; margin: .5rem 0;">Sign in with Github</a> --}}
+      <button class="btn btn-primary">Sign in</button>
+      <div class="my-3">
+        <p class="m-0 fs-6 fst-italic">New user? <a href="/register">Create an account</a></p>
+        <p class="m-0 fs-6 fst-italic">Forgot your password? <a href="/recoverpassword">Recover Password</a></p>
       </div>
-      <p>New user? <a href="/register">Create an account</a></p>
-      <p>Forgot your password? <a href="/recoverpassword">Recover Password</a></p>
     </form>
   </article>
 </section>

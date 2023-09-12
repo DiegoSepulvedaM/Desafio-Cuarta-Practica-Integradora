@@ -4,13 +4,12 @@ export default class ProductManagerDB {
   
   async getAll(limit, page = 1, query = false, sort = false) {
     try {
-      if (isNaN(page)) throw new Error(`La pagina especificada no existe`);
+      if (isNaN(page)) throw new Error(`The page doesn't exists`);
       let options = { lean: true, limit: limit || 10, page };
       if (sort) options.sort = { price: sort };
       let queryObj = query ? { category: { $regex: query, $options: "i" } } : {};
       let products = await productModel.paginate(queryObj, options);
-      if (page > products.totalPages || page <= 0 )
-      throw new Error(`La pagina especificada no existe`);
+      if (page > products.totalPages || page <= 0 ) throw new Error(`The page doesn't exists`);
       return products;
     } catch (error) {
       return { error: error.message };
@@ -23,7 +22,7 @@ export default class ProductManagerDB {
       if (!product) throw new Error(`Product not found`);
       return product;
     } catch (error) {
-      return { error: `${error.message}` };
+      return { error: error.message };
     }
   }
 
@@ -34,9 +33,9 @@ export default class ProductManagerDB {
       if (await this.#checkIfCodeExists(product.code))
         throw new Error(`The product code already exists.`);
       let result = await productModel.create(product);
-      return { success: `The product was successfully added.`, payload: result };
+      return result;
     } catch (error) {
-      return { error: `${error.message}` };
+      return { error: error.message };
     }
   }
   
@@ -45,7 +44,7 @@ export default class ProductManagerDB {
       if (this.#checkIfEmptyField(newParams))
         throw new Error(`All the fields are mandatory.`);
       let result = await productModel.updateOne({ _id: id }, newParams);
-      return { success: `The product was update succefully`, payload: result };
+      return result
     } catch (error) {
       return { error: error.message };
     }
@@ -54,9 +53,9 @@ export default class ProductManagerDB {
   async delete(id) {
     try {
       let result = await productModel.deleteOne({ _id: id });
-      return { success: `The product was successfully removed`, payload: result };
+      return result;
     } catch (error) {
-      return { error: `${error.message}` };
+      return { error: error.message };
     }
   }
 

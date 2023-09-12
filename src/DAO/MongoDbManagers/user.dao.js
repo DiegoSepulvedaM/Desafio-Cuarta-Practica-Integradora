@@ -13,7 +13,6 @@ export default class UserManagerDB {
   async get(email) {
     try {
       let user = await userModel.findOne({ email }, { __v: 0 }).lean();
-
       if (!user) throw new Error(`User not exists.`);
       return user;
     } catch (error) {
@@ -23,9 +22,8 @@ export default class UserManagerDB {
 
   async getById(uid) {
     try {
-      let user = await userModel.findOne({ _id: uid}, { __v: 0 }).lean();
+      let user = await userModel.findOne({ _id: uid }, { __v: 0 }).lean();
       if (!user) throw new Error(`User not exists.`);
-      
       return user;
     } catch (error) {
       return { error: error.message };
@@ -132,6 +130,29 @@ export default class UserManagerDB {
         { $set: { documents } }
       );
       return result;
+    } catch (error) {
+      return { error: error.message };
+    }
+  }
+
+  async getAll() {
+    try {
+      let result = await userModel
+        .find(
+          {},
+          { first_name: 1, last_name: 1, email: 1, role: 1, last_connection: 1 }
+        )
+        .lean();
+      return result;
+    } catch (error) {
+      return { error: error.message };
+    }
+  }
+
+  async delete(uid) {
+    try {
+      let result = await userModel.deleteOne({ _id: uid })
+      return result
     } catch (error) {
       return { error: error.message };
     }

@@ -15,7 +15,9 @@ import {
   productsView,
   registerView,
   resetPasswordView,
-  recoverPassword
+  recoverPassword,
+  purchaseView,
+  usersView
 } from "../controllers/view.controller.js";
 
 class ViewRouterClass extends RouterClass {
@@ -29,9 +31,11 @@ class ViewRouterClass extends RouterClass {
     this.get("/products", passportCall("jwt"), authorizationRole(["user", "admin","premium"]), productsView);
     this.get("/product/:pid", passportCall("jwt"), authorizationRole(["user", "admin","premium"]), productDetailView);
     this.get("/newproduct", passportCall("jwt"), authorizationRole(["admin","premium"]), newProductView);
-    this.get("/carts", passportCall("jwt"), authorizationRole(["user", "admin","premium"]), cartView);
+    this.get("/carts", passportCall("jwt"), authorizationRole(["user","premium"]), cartView);
     this.get("/logout", passportCall("jwt"), logoutView);
     this.get("/chat", passportCall("jwt"), authorizationRole(["user","premium"]), chatView);
+    this.get("/purchase/:code", passportCall("jwt"), authorizationRole(["user","premium"]), purchaseView);
+    this.get("/users", passportCall("jwt"), authorizationRole(["admin"]), usersView);
   }
 }
 

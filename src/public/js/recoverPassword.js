@@ -8,13 +8,13 @@ const sendForm = async (e) => {
     body: JSON.stringify(userinfo),
     headers: { "Content-type": "application/json; charset=UTF-8" },
   });
-  let message = await response.json();
-  if (message.result.accepted.length > 0) {
+  let result = await response.json();
+  if (result.status === "success") {
     userform.reset();
-    alert(`We sent you an email with the link to reset your password.`);
+    alert(result.payload.message);
     setTimeout(() => window.location.href = "/login", 500);
   } else {
-    alert(message.error);
+    alert(result.payload);
   }
 };
 

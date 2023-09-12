@@ -25,15 +25,7 @@ body {
     padding: 10px 15px;
 }
 
-.btn-primary {
-    text-decoration: none;
-    color: #eee;
-    font-weight: bold;
-    background-color: rgb(44, 44, 131);
-    padding: 10px 15px;
-    min-width: 150px;
-    text-align: center;
-}
+
 
 .products {
     display: flex;
@@ -124,22 +116,6 @@ body {
     width: 300px;
     padding: 5px;
 }
-
-.create_form input[type="submit"] {
-    font-size: 1.1rem;
-    font-weight: bold;
-    padding: 10px 15px;
-    background-color: green;
-    color: #EEE;
-    border: none;
-    cursor: pointer;
-    margin: .5rem;
-}
-
-.create_form input[type="submit"]:hover {
-    background-color: rgb(10, 197, 10);
-}
-
 .pagination {
     margin: 2rem 0;
 }
@@ -212,26 +188,6 @@ button {
     justify-content: center;
     margin-top: 2rem;
     text-align: center;
-}
-
-.user_form{
-    margin-top: 1rem;
-    padding: 2rem;
-    background-color: #fff;
-    width: 360px;
-    font-weight: bold;
-}
-
-.user_form input {
-    display: block;
-    width: 100%;
-    margin: .5rem 0;
-    padding: 10px 5px;
-}
-
-.user_form button {
-    margin-top: 1rem;
-    width: 100%;
 }
 
 .perfil-container{

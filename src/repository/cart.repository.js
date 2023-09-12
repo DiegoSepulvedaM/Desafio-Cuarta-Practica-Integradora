@@ -3,31 +3,11 @@ export default class CartRepository {
     this.DAO = DAO;
   }
 
-  async addCart() {
-    return await this.DAO.create();
-  }
-
-  async getCart(id) {
-    return await this.DAO.get(id);
-  }
-
-  async addProductToCart(cid, pid) {
-    return await this.DAO.addProductToCart(cid, pid);
-  }
-
-  async deleteAllProducts(id) {
-    return await this.DAO.deleteAllProducts(id);
-  }
-
-  async deleteProduct(cid, pid) {
-    return await this.DAO.deleteProduct(cid, pid);
-  }
-
-  async updateProducts(cid, products) {
-    return await this.DAO.updateProducts(cid, products);
-  }
-
-  async updateProductQuantity(cid, pid, quantity) {
-    return await this.DAO.updateProducts(cid, pid, quantity);
-  }
+  getCart = async (id) => await this.DAO.get(id);
+  createCart = async () => await this.DAO.create();
+  updateProducts = async (cid, products) => await this.DAO.updateProducts(cid, products);
+  deleteAllProducts = async (id) => await this.DAO.deleteAllProducts(id);
+  addProductToCart = async (cid, pid) => await this.DAO.addProductToCart(cid, pid);
+  updateProductQuantity = async (cid, pid, quantity) => await this.DAO.updateProductQuantity(cid, pid, quantity);
+  deleteProduct = async (cid, pid) => await this.DAO.deleteProduct(cid, pid);
 }

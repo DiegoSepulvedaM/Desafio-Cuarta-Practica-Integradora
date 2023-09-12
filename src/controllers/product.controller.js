@@ -1,8 +1,9 @@
-// import CustomError from "../middleware/errors/CustomError.js";
-// import { generateProductErrorAttributes } from "../middleware/errors/info.js";
-// import EErrors from '../middleware/errors/enum.js'
-import { PRODUCT_SERVICES } from "../services/servicesManager.js";
-import { generateProduct } from "../utils.js";
+import {
+  PRODUCT_SERVICES,
+  USER_SERVICES,
+} from "../services/servicesManager.js";
+import { generateProduct } from "../utils/faker.js";
+import transport from "../utils/mailer.js";
 
 export const getProducts = async (request, response) => {
   const { limit, sort, page, query } = request.query;
@@ -27,7 +28,7 @@ export const getProduct = async (request, response) => {
   const { pid } = request.params;
   let res = await PRODUCT_SERVICES.getProduct(pid);
   res?.error
-    ? response.status(404).send({ status: `error`, ...res })
+    ? response.status(404).send({ status: `error`, error: res.error })
     : response.send({ status: `success`, product: res });
 };
 
@@ -41,56 +42,55 @@ export const saveProduct = async (request, response) => {
   product.owner = user._id;
   let res = await PRODUCT_SERVICES.saveProduct(product);
   let res2 = await PRODUCT_SERVICES.getProducts();
-  response.send(res);
+  res?.error
+    ? response.status(500).send({ status: "error", payload: res.error })
+    : response.status(201).send({
+        status: "success",
+        payload: { message: `The product was successfully added.` },
+      });
   io.emit("products", res2);
 };
 
-// export const saveProduct = async (request, response) => {
-//   const { body } = request;
-//   let product = { ...body, status: true };
-//   if (
-//     !product.title ||
-//     !product.description ||
-//     !product.price ||
-//     !product.code ||
-//     !product.status ||
-//     !product.stock ||
-//     !product.category
-//   ) {
-//     throw CustomError.createError({
-//       name: "TYPE_ERROR",
-//       cause: generateProductErrorAttributes(body),
-//       message: "Error trying to create the product.",
-//       code: EErrors.INVALID_TYPE_ERROR
-//     });
-//   }
-//     product.thumbnails = [];
-//     let res = await PRODUCT_SERVICES.saveProduct(product);
-//     response.send(res);
-// };
-
 export const deleteProduct = async (request, response) => {
   const { user } = request.user;
-  if(user.role === "premium") { 
-    let res = await PRODUCT_SERVICES.getProduct(pid);
-    if(res.owner.toString() !== user._id) {
-      return response.status(401).send({ error: 'You do not have permissions to perform this action'})
+  let { pid } = request.params;
+  let product_result = await PRODUCT_SERVICES.getProduct(pid);
+  if (user.role === "premium") {
+    if (product_result.owner.toString() !== user._id) {
+      return response
+        .status(401)
+        .send({ error: "You do not have permissions to perform this action" });
     }
   }
-  let { pid } = request.params;
-  // const io = request.app.get("socketio");
   let res = await PRODUCT_SERVICES.deleteProduct(pid);
-  // let res2 = await PRODUCT_SERVICES.getProducts();
-  response.send(res);
-  // io.emit("products", res2);
+  if (res?.error) {
+    response.status(500).send({ status: "error", payload: res.error });
+  } else {
+    let owner = await USER_SERVICES.getUserById(product_result.owner);
+    if (owner.role === "premium") {
+      await transport.sendMail({
+        from: "Diego Sepulveda <micorre@gmail.com>",
+        to: owner.email,
+        subject: "Producto eliminado.",
+        html: `<p>El producto ${product_result.title} fue eliminado.</p>`,
+      });
+    }
+    response.send({
+      status: "success",
+      payload: "The product was successfully removed",
+    });
+  }
 };
 
 export const updateProduct = async (request, response) => {
   let { pid } = request.params;
   let res = await PRODUCT_SERVICES.updateProduct(pid, request.body);
   res?.error
-    ? response.status(400).send({ ...res })
-    : response.send({ product: res });
+    ? response.status(400).send({ status: "error", payload: res.error })
+    : response.send({
+        status: "success",
+        payload: "The product was update succefully",
+      });
 };
 
 export const getMocksProducts = async (request, response) => {

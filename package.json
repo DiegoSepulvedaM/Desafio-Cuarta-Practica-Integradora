@@ -1,14 +1,15 @@
 {
-  "name": "diegosepulveda-testing",
+  "name": "diegosepulveda-coder",
   "version": "1.0.0",
   "description": "",
   "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "set NODE_ENV=mongo&& nodemon src/app.js ",
-    "mongo": "set NODE_ENV=mongo&& nodemon src/app.js ",
-    "files": "set NODE_ENV=files&& nodemon src/app.js"
+    "nodemon": "set NODE_ENV=mongo&& nodemon src/app.js ",
+    "start": "set NODE_ENV=mongo&& node src/app.js ",
+    "mongo": "set NODE_ENV=mongo&& node src/app.js ",
+    "files": "set NODE_ENV=files&& node src/app.js"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +26,7 @@
     "express-handlebars": "^7.0.7",
     "express-session": "^1.17.3",
     "jsonwebtoken": "^9.0.0",
+    "moment": "^2.29.4",
     "mongoose": "^7.1.0",
     "mongoose-paginate-v2": "^1.7.1",
     "multer": "^1.4.5-lts.1",

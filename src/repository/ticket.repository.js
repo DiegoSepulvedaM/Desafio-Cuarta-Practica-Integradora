@@ -10,4 +10,8 @@ export default class TicketRepository {
         let ticketDBFormat = await TICKET_DTO.ticket(ticket);
         return await this.DAO.addTicket(ticketDBFormat);
     }
+
+    async getTicket(code) {
+        return await this.DAO.getTicket(code)
+    }
 }

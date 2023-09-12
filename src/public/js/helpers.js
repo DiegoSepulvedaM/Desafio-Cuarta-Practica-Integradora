@@ -7,9 +7,9 @@ const addToCart = async (e) => {
       { method: "POST" }
     );
     let message = await res.json();
-    if (message?.success) {
+    if (message.status === 'success') {
       Swal.fire({
-        text: `${message.success}`,
+        text: `${message.payload}`,
         toast: true,
         position: "top-right",
       });

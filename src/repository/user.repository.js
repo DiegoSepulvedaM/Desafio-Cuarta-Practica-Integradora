@@ -45,4 +45,12 @@ export default class UserRepository {
   async getUserById(uid) {
     return await this.DAO.getById(uid)
   }
+
+  async getAll() {
+    return await this.DAO.getAll()
+  }
+
+  async deleteInactiveUser(uid) {
+    return await this.DAO.delete(uid)
+  }
 }
